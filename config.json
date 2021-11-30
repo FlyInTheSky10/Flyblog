@@ -1,0 +1,11 @@
+{
+	"title": "Flyblog",
+	"subtitle": "a simple blog",
+	"author": "FlyInTheSky",
+	"description": "「不忘初心，方得始终」",
+	"rootpath": "E:/programlearning/projects/FlyBlog/public",
+	"pages": [
+		"about",
+		"friends"
+	]
+}

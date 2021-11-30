@@ -1,0 +1,368 @@
+body {
+	background-color: rgba(245,245,245,.98);
+}
+.header {
+	position: relative;
+	height: 320px;
+}
+.author-wrapper {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+}
+.author-wrapper .author {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+.author-wrapper .author .avatar {
+	display: block;
+	width: 140px;
+	height: 140px;
+	border-radius: 100%;
+	box-shadow: 2px 2px 12px 4px rgba(0, 0, 0, 0.25);
+}
+.author-wrapper .author .name {
+	display: block;
+	margin-top: 10px;
+	font-size: 30px;
+	color: white;
+	text-shadow: 1px 1px 4px rgba(34, 34, 34, 0.6);
+}
+.author-wrapper .author .description {
+	margin-top: 10px;
+	color: white;
+	text-shadow: 1px 1px 4px rgba(34, 34, 34, 0.6);
+}
+.postlist-wrapper {
+	display: flex;
+	justify-content: center;
+	width: 90%;
+	margin: 0px auto 0px auto;
+}
+.postlist-wrapper .postlist {
+	margin: 50px auto 40px auto;
+	height: 100%;
+	flex: 4;
+}
+.postlist-wrapper .post-wrapper {
+	margin: 30px 0px 30px 0px;
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 2px 2px 12px 4px rgba(0, 0, 0, 0.25);
+}
+.postlist-wrapper .post .title {
+	display: block;
+	padding: 20px 50px 10px 50px;
+	font-size: 40px;
+	color: black;
+}
+.postlist-wrapper .post .subtitle {
+	color: #686868;
+	padding-bottom: 20px;
+}
+.footer {
+	bottom: 0px;
+}
+.footer p {
+	margin-bottom: 10px;
+	color: #686868;
+	font-size: 15px;
+}
+#previouspage, #nextpage {
+	color: #686868;
+	font-size: 20px;
+	padding-right: 20px;
+}
+.button-wrapper {
+	display: flex;
+	flex-direction: row-reverse;
+}
+#sidebar {
+	margin: 80px 30px 70px 0px;
+	min-width: 300px;
+	max-width: 300px;
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 2px 2px 12px 4px rgba(0, 0, 0, 0.25);
+	flex: 1;
+}
+/*
+	文章样式
+*/
+.postlist-wrapper .post .content {
+	margin: 0px auto 20px auto;
+	width: 80%;
+	line-height: 1.4;
+}
+
+.postlist-wrapper .post .content {
+    color: #444;
+}
+
+.postlist-wrapper .post .content p {
+    line-height: 1.65em;
+}
+
+.postlist-wrapper .post .content code::-webkit-scrollbar {
+    width: 10px;
+    height: 5px
+}
+
+.postlist-wrapper .post .content code::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #8888887a
+}
+
+.postlist-wrapper .post .content a {
+    /* -webkit-transition: all .35s; */
+    /* transition: all .35s; */
+    color: #2196f3;
+    text-decoration: none;
+    position: relative;
+    word-wrap: break-word;
+}
+
+.postlist-wrapper .post .content a:focus,.postlist-wrapper .post .content a:hover {
+    color: #2196f3
+}
+
+.postlist-wrapper .post .content a::after {
+    -webkit-transition: width .35s;
+    transition: width .35s;
+    content: "";
+    right: 0;
+    width: 0;
+    bottom: -2px;
+    position: absolute;
+    border-bottom: 1px solid
+}
+
+.postlist-wrapper .post .content a:hover::after {
+    left: 0;
+    width: 100%
+}
+
+.postlist-wrapper .post .content p {
+    margin: 5px 0!important;
+    position: relative
+}
+
+.postlist-wrapper .post .content p::after {
+    content: "";
+    clear: both;
+    display: block
+}
+
+.postlist-wrapper .post .content del {
+    color: #888;
+    font-size: 1rem;
+}
+
+.postlist-wrapper .post .content img {
+    -webkit-box-shadow: 0 0 0 1px #eee;
+    box-shadow: 0 0 0 1px #eee;
+    display: block;
+    position: relative;
+    border-radius: 6px;
+    margin-top: .6em;
+    margin-bottom: .6em;
+}
+
+.postlist-wrapper .post .content h1,.postlist-wrapper .post .content h2,.postlist-wrapper .post .content h3,.postlist-wrapper .post .content h4,.postlist-wrapper .post .content h5,.postlist-wrapper .post .content h6 {
+    text-indent: -6px;
+    margin: 25px 0!important;
+    position: relative;
+    color: #222;
+}
+
+.postlist-wrapper .post .content h1:before,.postlist-wrapper .post .content h2:before,.postlist-wrapper .post .content h3:before,.postlist-wrapper .post .content h4:before,.postlist-wrapper .post .content h5:before,.postlist-wrapper .post .content h6:before {
+    display: inline-block;
+    margin-right: .4em;
+    color: #2196f3
+}
+
+.postlist-wrapper .post .content h1:before {
+    content: '#';
+}
+
+.postlist-wrapper .post .content h2:before {
+    content: '#';
+}
+
+.postlist-wrapper .post .content h3:before {
+    content: '##';
+}
+
+.postlist-wrapper .post .content h4:before {
+    content: '###';
+}
+
+.postlist-wrapper .post .content h5:before {
+    content: '####';
+}
+
+.postlist-wrapper .post .content h6:before {
+    content: '#####';
+}
+
+.postlist-wrapper .post .content blockquote {
+    color: #666;
+    padding: .1rem 2.2rem;
+    background-color: #f3f3f3;
+    line-height: 28px;
+    position: relative;
+    border-radius: 6px;
+    border: 1px solid #eee;
+    font-family: sf pro sc,sf pro display,sf pro icons,aos icons,pingfang sc,helvetica neue,helvetica,arial,sans-serif;
+}
+
+.postlist-wrapper .post .content blockquote:before {
+    content: "“";
+    top: 15px;
+    left: 10px;
+    position: absolute;
+    color: #888;
+    font-size: 3rem
+}
+
+.postlist-wrapper .post .content blockquote:after {
+    content: "”";
+    bottom: -8px;
+    right: 10px;
+    position: absolute;
+    color: #888;
+    font-size: 3rem
+}
+
+.postlist-wrapper .post .content hr {
+    display: block;
+    border: 0;
+    border-top: 1px dashed #ccc;
+    margin: 20px 0;
+    padding: 0
+}
+
+.postlist-wrapper .post .content sub,.postlist-wrapper .post .content sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline
+}
+
+.postlist-wrapper .post .content sup {
+    top: -.5em
+}
+
+.postlist-wrapper .post .content sub {
+    bottom: -.25em
+}
+
+.postlist-wrapper .post .content ol,.postlist-wrapper .post .content ul {
+    padding: 0 0 0 2em;
+    margin-top: 0
+}
+
+.postlist-wrapper .post .content ul .mdui-checkbox {
+    padding-left: 22px;
+    height: 18px
+}
+
+.postlist-wrapper .post .content ul .mdui-checkbox-icon {
+    top: 4px
+}
+
+.postlist-wrapper .post .content li {
+    line-height: 1.65rem;
+}
+
+.postlist-wrapper .post .content li p {
+    margin: 0!important
+}
+
+.postlist-wrapper .post .content dd {
+    margin: 0 0 0 2em
+}
+
+.postlist-wrapper .post .content table {
+    color: #5b6064;
+    border-spacing: 0;
+    text-align: center;
+    border-collapse: collapse;
+    -webkit-box-shadow: 0 0 0 1px #eee;
+    box-shadow: 0 0 0 1px #eee;
+    display: inline-block;
+    max-width: 100%;
+    overflow: auto;
+    white-space: nowrap;
+    margin: auto;
+    border-radius: 6px
+}
+
+.postlist-wrapper .post .content table::-webkit-scrollbar {
+    width: 6px;
+    height: 6px
+}
+
+.postlist-wrapper .post .content table::-webkit-scrollbar-thumb {
+    background-color: #888
+}
+
+.postlist-wrapper .post .content table thead {
+    border-bottom: 1px solid #eee;
+    background-color: #f8f8f8
+}
+
+.postlist-wrapper .post .content table thead tr {
+    background-color: #f8f8f8
+}
+
+.postlist-wrapper .post .content table th {
+    border-right: 1px solid #eee;
+    padding: 13px 26px;
+    font-weight: 400
+}
+
+.postlist-wrapper .post .content table td {
+    border-right: 1px solid #eee;
+    padding: 13px 26px
+}
+
+.postlist-wrapper .post .content table td:last-child,.postlist-wrapper .post .content table th:last-child {
+    border: none
+}
+
+.postlist-wrapper .post .content table tr {
+    background-color: #fff
+}
+
+.postlist-wrapper .post .content table tr:nth-child(2n) {
+    background-color: #f8f8f8
+}
+
+.postlist-wrapper .post .content canvas,.postlist-wrapper .post .content iframe,.postlist-wrapper .post .content img,.postlist-wrapper .post .content select,.postlist-wrapper .post .content svg,.postlist-wrapper .post .content textarea,.postlist-wrapper .post .content video {
+    max-width: 100%!important;
+}
+
+.postlist-wrapper .post .content h1 {
+    font-size: 2.0em;
+}
+
+.postlist-wrapper .post .content h2 {
+    font-size: 1.5em;
+}
+
+.postlist-wrapper .post .content h3 {
+    font-size: 1.3em
+}
+
+.postlist-wrapper .post .content h4 {
+    font-size: 1.0em
+}
+
+.postlist-wrapper .post .content h5 {
+    font-size: 0.8em
+}
+
+.postlist-wrapper .post .content h6 {
+    font-size: 0.8em
+}

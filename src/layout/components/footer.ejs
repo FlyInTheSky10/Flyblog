@@ -1,0 +1,43 @@
+<div class="footer" align="center">
+	<p>© 2016 — 2021 | FlyInTheSky</p>
+	<p>由 Flyblog 强力驱动</p>
+</div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+    });
+</script>
+<!-- hide sidebar if width is not enough -->
+<script>
+	checkSidebar();
+	window.onresize = function() {
+		checkSidebar();
+	};
+	function checkSidebar() {
+		let clientWidth = document.body.clientWidth;
+		let sidebarDOM = document.getElementById("sidebar");
+		if (clientWidth < 1000) {
+			if (sidebarDOM) {
+				sidebarDOM.style.setProperty("display", "none");
+			}
+		} else {
+			if (sidebarDOM) {
+				sidebarDOM.style.setProperty("display", null);
+			}
+		}
+	}
+</script>

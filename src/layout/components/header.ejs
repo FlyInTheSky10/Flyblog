@@ -1,0 +1,25 @@
+<style type="text/css">
+	.header {
+		background-image: url(<%= config.rootpath + "/static/images/header_background.png" %>);
+		background-repeat: repeat;
+		background-size: cover;
+		background-position: center;
+	}
+	.author-wrapper .author .avatar {
+		background-image: url(<%= config.rootpath + "/static/images/avatar.jpg" %>);
+		background-size: contain;
+	}
+</style>
+<div class="header">
+	<div class="author-wrapper">
+		<div class="author" align="center">
+			<a class="avatar" href=<%= config.rootpath %>></a>
+			<a class="name" href=<%= config.rootpath %>>
+				<%= config.author %>
+			</a>
+			<div class="description">
+				<%= config.description %>
+			</div>
+		</div>
+	</div>
+</div>
