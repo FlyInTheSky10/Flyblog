@@ -25,13 +25,13 @@
 			<% } %>
 			<div class="button-wrapper">
 				<% if (!lastpage) { %>
-					<a id="nextpage" href=<%- `"${config.rootpath}/page/${pagecode + 1}"` %>>下一页</a>
+					<a id="nextpage" href=<%- `"${config.rootpath}/page/${pagecode + 1}/"` %>>下一页</a>
 				<% } %>
 				<% if (pagecode > 1) { %>
 					<%
-						let prehref = `"${config.rootpath}/page/${pagecode - 1}"`;
+						let prehref = `"${config.rootpath}/page/${pagecode - 1}/"`;
 						if (pagecode == 2) {
-							prehref = `"${config.rootpath}"`;
+							prehref = `"${config.rootpath}/"`;
 						}
 					%>
 					<a id="previouspage" href=<%- prehref %>>上一页</a>

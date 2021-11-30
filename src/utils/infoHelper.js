@@ -1,12 +1,14 @@
 "use strict";
 const fs = require("fs");
 const path = require("path"); 
+const osHelper = require("./osHelper"); 
 
 let sourceDir = "../source";
 
 module.exports = (function() {
 	
 	let config = "";
+	let hostname = "";
 	
 	return {
 		getInfoFromMarked(fileName, type) { // return post info: {title, date, fileName, tags};
@@ -63,6 +65,15 @@ module.exports = (function() {
 				config = JSON.parse(dataConf);
 				return config;
 			}
+		},
+		serverMode() {
+			let that = this;
+			that.getConfig();
+			hostname = osHelper.getIpAddress() || "localhost";
+			config.rootpath = `http://${hostname}:${config.port}`;
+		},
+		getHostName() {
+			return hostname;
 		}
 	};
 })();

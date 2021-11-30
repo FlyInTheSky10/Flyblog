@@ -4,6 +4,7 @@
 	"author": "FlyInTheSky",
 	"description": "「不忘初心，方得始终」",
 	"rootpath": "E:/programlearning/projects/FlyBlog/public",
+	"port": 3000,
 	"pages": [
 		"about",
 		"friends"

@@ -11,6 +11,7 @@ let markedHelper = require("../utils/markedHelper");
 module.exports = (function() {
 	
 	let flag = false;
+	let pageCount = 0;
 	
 	function checkInit() {
 		if (!flag) throw "Error: postManager doesn't init!";
@@ -41,6 +42,7 @@ module.exports = (function() {
 			staticHelper.exportStaticAsset("js");
 			staticHelper.exportStaticAsset("images"); // export static files
 			postManager.initPostList();
+			fs.writeFileSync(path.resolve(__dirname, "../../public/404.html"), "404 Not Found");
 			flag = true;
 			let that = this;
 			return that;
@@ -51,23 +53,23 @@ module.exports = (function() {
 		async generateIndexPage() {
 			checkInit();
 			let config = infoHelper.getConfig();
-			let postCount = postManager.getPostCount(), count = 0, maxPostNumber = 10;
+			let postCount = postManager.getPostCount(), maxPostNumber = 10;
 			for (let l = 0; l < postCount; l += maxPostNumber) {
-				count++;
+				pageCount++;
 				let r = l + maxPostNumber - 1;
 				if (r >= postCount) r = postCount - 1;
 				if (r < l) break ;
 				let postlist = getPostlistByRange(l, r);
 				
 				let html;
-				await ejsHelper.renderIndexPage(config, postlist, count, r == postCount - 1).then(data => html = data);
+				await ejsHelper.renderIndexPage(config, postlist, pageCount, r == postCount - 1).then(data => html = data);
 				
 				let dir = "../../public/";
-				if (count == 1) {
+				if (pageCount == 1) {
 					dir += "index.html";
 				} else {
-					fs.mkdirSync(path.resolve(__dirname, dir + `page/${count}`), { recursive: true });
-					dir += `page/${count}/index.html`;
+					fs.mkdirSync(path.resolve(__dirname, dir + `page/${pageCount}`), { recursive: true });
+					dir += `page/${pageCount}/index.html`;
 				}
 				
 				console.log(`generating: ${path.resolve(__dirname, dir)}`);
@@ -77,7 +79,7 @@ module.exports = (function() {
 				});
 			}
 			
-			console.log(`generate indexpage done`);
+			console.log(`generate indexPage done, generated ${pageCount} pages.`);
 			
 			let that = this;
 			return that;
@@ -87,6 +89,9 @@ module.exports = (function() {
 		},
 		generateOtherPage(pageName) {
 			
+		},
+		getPageCount() {
+			return pageCount;
 		}
 	};
 })();
