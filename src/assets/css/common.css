@@ -38,6 +38,7 @@ body {
 	justify-content: center;
 	width: 90%;
 	margin: 0px auto 0px auto;
+	transition: 1s opacity;
 }
 .postlist-wrapper .postlist {
 	margin: 50px auto 40px auto;
@@ -50,14 +51,18 @@ body {
 	border-radius: 10px;
 	box-shadow: 2px 2px 12px 4px rgba(0, 0, 0, 0.25);
 }
+.postlist-wrapper .post {
+	padding-bottom: 10px;
+}
 .postlist-wrapper .post .title {
 	display: block;
 	padding: 20px 50px 10px 50px;
-	font-size: 40px;
+	font-size: 30px;
 	color: black;
 }
 .postlist-wrapper .post .subtitle {
 	color: #686868;
+	font-size: 14px;
 	padding-bottom: 20px;
 }
 .footer {
@@ -85,6 +90,28 @@ body {
 	border-radius: 10px;
 	box-shadow: 2px 2px 12px 4px rgba(0, 0, 0, 0.25);
 	flex: 1;
+}
+.postlist-wrapper .postall-wrapper {
+	margin-top: 80px;
+	margin-bottom: 30px;
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 2px 2px 12px 4px rgba(0, 0, 0, 0.25);
+	flex: 4;
+}
+.postlist-wrapper .postall-wrapper .tags {
+	padding-bottom: 10px;
+}
+.postlist-wrapper .postall-wrapper .tags .tag {
+	flex: 1;
+	margin-right: 10px;
+	font-size: 15px;
+	color: #555;
+}
+code {
+	font-size: 14px;
+	font-family: "Fira Mono", "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro", monospace;
+	width: 0px;
 }
 /*
 	文章样式

@@ -1,0 +1,36 @@
+<%
+	function getStringFromDate(date) {
+		let y = date.getFullYear();
+		let m = date.getMonth() + 1;
+		let d = date.getDate();
+		return `${y}-${m}-${d}`;
+	}
+%>
+<%- include("components/head") -%>
+<body>
+	<div id="main">
+		<%- include("components/header") -%>
+		<div class="postlist-wrapper" style="opacity: 0; visibility: hidden;">
+			<%- include("components/sidebar") -%>
+			<div class="postall-wrapper post">
+				<% posturl = config.rootpath + "/" + post.fileName.substring(0, post.fileName.length - 3) + "/" %>
+				<a class="title" href=<%= `${posturl}` %> align="center"><%- post.title -%><a>
+				<% ds = getStringFromDate(post.date) %>
+				<div class="subtitle" align="center">发表于 <%- ds %> | <%- config.author %></div>
+				<div class="content">
+					<%- post.content -%>
+				</div>
+				<div class="tags" align="center">
+					<% for (let i = 0; i < post.tags.length; ++i) { %>
+						<% tagHref = config.rootpath + "/tags/" + post.tags[i] + "/" %>
+						<a class="tag" href=<%=`${tagHref}`%>>
+							<i class="fa fa-tag" style="font-size: 15px"></i>
+							<%- post.tags[i] %>
+						</a>
+					<% } %>
+				</div>
+			</div>
+		</div>
+		<%- include("components/footer") -%>
+	</div>
+</body>

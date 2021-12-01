@@ -21,12 +21,20 @@
         });
     });
 </script>
+<%
+	hightlightPath = config.rootpath + "/static/js/highlight.min.js";
+%>
+<script src=<%- `"${hightlightPath}"` %>></script>
+<script >hljs.initHighlightingOnLoad();</script>
 <!-- hide sidebar if width is not enough -->
 <script>
+
 	checkSidebar();
 	window.onresize = function() {
 		checkSidebar();
+		checkCode();
 	};
+	
 	function checkSidebar() {
 		let clientWidth = document.body.clientWidth;
 		let sidebarDOM = document.getElementById("sidebar");
@@ -39,5 +47,36 @@
 				sidebarDOM.style.setProperty("display", null);
 			}
 		}
+	}
+</script>
+<!-- make text in <p> /r/n => <br> -->
+<script>
+
+	function checkCode() {
+		let codeList = document.getElementsByTagName("code");
+		for (let i = 0; i < codeList.length; ++i) {
+			let codeDOM = codeList[i];
+			let contentDOM = codeDOM.parentNode.parentNode;
+			codeDOM.style.setProperty("width", contentDOM.offsetWidth + "px");
+			codeDOM.parentNode.style.setProperty("width", contentDOM.offsetWidth + "px");
+		}
+	}
+
+	window.onload = function() {
+
+		checkSidebar();
+
+		let pList = document.getElementsByTagName("p");
+		for (let i = 0; i < pList.length; ++i) {
+			let pDOM = pList[i];
+			pDOM.innerHTML = pDOM.innerHTML.replace(/[\r\n]/g, "<br>");
+		}
+		
+		checkCode();
+		
+		let pwDOM = document.getElementsByClassName("postlist-wrapper")[0];
+		pwDOM.style.setProperty("visibility", null);
+		pwDOM.style.setProperty("opacity", 1);
+		
 	}
 </script>

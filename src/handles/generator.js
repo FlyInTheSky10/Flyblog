@@ -36,8 +36,7 @@ module.exports = (function() {
 			fs.mkdirSync(path.resolve(__dirname, "../../public/static/js"), { recursive: true });
 			fs.mkdirSync(path.resolve(__dirname, "../../public/static/images"), { recursive: true });
 			fs.mkdirSync(path.resolve(__dirname, "../../public/page"), { recursive: true });
-			fs.mkdirSync(path.resolve(__dirname, "../../public/tags"), { recursive: true });
-			fs.mkdirSync(path.resolve(__dirname, "../../public/tags/page"), { recursive: true }); // make dir
+			fs.mkdirSync(path.resolve(__dirname, "../../public/tags"), { recursive: true }); // make dir
 			staticHelper.exportStaticAsset("css");
 			staticHelper.exportStaticAsset("js");
 			staticHelper.exportStaticAsset("images"); // export static files
@@ -47,8 +46,38 @@ module.exports = (function() {
 			let that = this;
 			return that;
 		},
-		generatePostPage() {
-			
+		async generatePostPage() {
+			checkInit();
+			let config = infoHelper.getConfig();
+			let postCount = postManager.getPostCount();
+			let postList = postManager.getPostList(0, postCount - 1);
+			for (let i = 0; i < postCount; ++i) {
+				
+				let nowPostFileName = postList[i].fileName;
+				let nowPostObject = {
+					content: markedHelper.getHtmlFromMarked(nowPostFileName, "post")
+				};
+				Object.assign(nowPostObject, postList[i]);
+				
+				let html;
+				await ejsHelper.renderPostPage(config, nowPostObject).then(data => html = data);
+				
+				let postPath;
+				for (let i = nowPostFileName.length - 1; i >= 0; --i) {
+					if (nowPostFileName[i] == '.') {
+						postPath = nowPostFileName.substring(0, i);
+						break ;
+					}
+				}
+				
+				let dir = `../../public/${postPath}/`;
+				fs.mkdirSync(path.resolve(__dirname, dir), { recursive: true });
+				
+				fs.writeFile(path.resolve(__dirname, dir + "index.html"), html, err => {
+					if (err) throw err;
+				});
+			}
+			console.log(`Generate PostPage done, generated ${postCount} pages.`);
 		},
 		async generateIndexPage() {
 			checkInit();
@@ -79,7 +108,7 @@ module.exports = (function() {
 				});
 			}
 			
-			console.log(`generate indexPage done, generated ${pageCount} pages.`);
+			console.log(`Generate indexPage done, generated ${pageCount} pages.`);
 			
 			let that = this;
 			return that;

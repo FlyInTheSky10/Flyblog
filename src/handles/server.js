@@ -7,6 +7,7 @@ let path = require("path");
 let infoHelper = require("../utils/infoHelper");
 let staticHelper = require("../utils/staticHelper");
 let generator = require("./generator");
+let postManager = require("./postManager");
 
 module.exports = (function() {
 	
@@ -70,8 +71,9 @@ module.exports = (function() {
 			infoHelper.serverMode();
 			generator.init();
 			
-			let genPro = [], routePro = [];
+			let genPro = [], routePro;
 			genPro.push(generator.generateIndexPage());
+			genPro.push(generator.generatePostPage());
 			
 			server = http.createServer((req, res) => {
 				let data = "";
@@ -95,15 +97,33 @@ module.exports = (function() {
 			});
 			
 			addRouteHandle("/static/css/", "text/css", "css");
+			addRouteHandle("/static/js/", "	application/x-javascript", "js");
 			addRouteHandle("/static/images/", "image/jpeg", "jpg");
 			addRouteHandle("/static/images/", "image/png", "png");
 			
-			routePro.push(Promise.all(genPro).then(() => {
+			routePro = Promise.all(genPro).then(() => {
+				
 				for (let i = 2; i <= generator.getPageCount(); ++i) {
 					addRouteHandle(`/page/${i}/`, "text/html", "html");
 				}
-			})); // wait all gernerator finished
-			Promise.all(routePro).then(() => {
+				
+				let arr = postManager.getPostList(0, postManager.getPostCount() - 1);
+				for (let i = 0; i < postManager.getPostCount(); ++i) {
+					let fileName = arr[i].fileName, postPath;
+					for (let j = fileName.length - 1; j >= 0; --j) {
+						if (fileName[j] == '.') {
+							postPath = fileName.substring(0, j);
+							break ;
+						}
+					}
+					addRouteHandle(`/${postPath}/`, "text/html", "html");
+				}
+				
+				console.log("Server route done.");
+				
+			}); // wait all gernerator finished
+			routePro.then(() => {
+				console.log("Server all initialized.");
 				runServer();
 			}); // wait all route added
 		}

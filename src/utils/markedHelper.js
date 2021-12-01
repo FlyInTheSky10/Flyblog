@@ -23,7 +23,7 @@ module.exports = (function() {
 					}
 				}
 			} // delete head
-			return dataHtml.replace(/[\r\n]/g, "<br>");
+			return dataHtml;
 		},
 		getIntroFromFileName(fileName) { // return html introduction from fileName
 			let that = this;

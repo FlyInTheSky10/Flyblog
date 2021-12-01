@@ -8,36 +8,38 @@
 %>
 <%- include("components/head") -%>
 <body>
-	<%- include("components/header") -%>
-	<div class="postlist-wrapper">
-		<%- include("components/sidebar") -%>
-		<div class="postlist">
-			<% for (let i = 0; i < postlist.length; ++i) { %>
-			<div class="post-wrapper">
-				<div class="post">
-					<% posturl = postlist[i].fileName.substring(0, postlist[i].fileName.length - 3) %>
-					<a class="title" align="center" href=<%- `"` + config.rootpath + "/" + posturl + `"` %>><%= postlist[i].title %></a>
-					<% ds = getStringFromDate(postlist[i].date) %>
-					<div class="subtitle" align="center">发表于 <%= ds %> | <%= config.author %></div>
-					<div class="content"><%- postlist[i].intro %></div>
+	<div id="main">
+		<%- include("components/header") -%>
+		<div class="postlist-wrapper" style="opacity: 0; visibility: hidden;">
+			<%- include("components/sidebar") -%>
+			<div class="postlist">
+				<% for (let i = 0; i < postlist.length; ++i) { %>
+				<div class="post-wrapper">
+					<div class="post">
+						<% posturl = postlist[i].fileName.substring(0, postlist[i].fileName.length - 3) %>
+						<a class="title" align="center" href=<%- `"` + config.rootpath + "/" + posturl + `/"` %>><%- postlist[i].title %></a>
+						<% ds = getStringFromDate(postlist[i].date) %>
+						<div class="subtitle" align="center">发表于 <%- ds %> | <%- config.author %></div>
+						<div class="content"><%- postlist[i].intro %></div>
+					</div>
+				</div>
+				<% } %>
+				<div class="button-wrapper">
+					<% if (!lastpage) { %>
+						<a id="nextpage" href=<%- `"${config.rootpath}/page/${pagecode + 1}/"` %>>下一页</a>
+					<% } %>
+					<% if (pagecode > 1) { %>
+						<%
+							let prehref = `"${config.rootpath}/page/${pagecode - 1}/"`;
+							if (pagecode == 2) {
+								prehref = `"${config.rootpath}/"`;
+							}
+						%>
+						<a id="previouspage" href=<%- prehref %>>上一页</a>
+					<% } %>
 				</div>
 			</div>
-			<% } %>
-			<div class="button-wrapper">
-				<% if (!lastpage) { %>
-					<a id="nextpage" href=<%- `"${config.rootpath}/page/${pagecode + 1}/"` %>>下一页</a>
-				<% } %>
-				<% if (pagecode > 1) { %>
-					<%
-						let prehref = `"${config.rootpath}/page/${pagecode - 1}/"`;
-						if (pagecode == 2) {
-							prehref = `"${config.rootpath}/"`;
-						}
-					%>
-					<a id="previouspage" href=<%- prehref %>>上一页</a>
-				<% } %>
-			</div>
 		</div>
+		<%- include("components/footer") -%>
 	</div>
-	<%- include("components/footer") -%>
-</body>
+</body
