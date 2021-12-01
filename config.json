@@ -3,7 +3,7 @@
 	"subtitle": "a simple blog",
 	"author": "FlyInTheSky",
 	"description": "「不忘初心，方得始终」",
-	"rootpath": "E:/programlearning/projects/FlyBlog/public",
+	"rootpath": "https://flyblog.vercel.app",
 	"port": 3000,
 	"pages": [
 		"about",
