@@ -78,9 +78,15 @@
 		pwDOM.style.setProperty("visibility", null);
 		pwDOM.style.setProperty("opacity", 1);
 		
+		let bgcssDOM = document.getElementsByTagName("style");
+		
+		for (let i = 0; i < bgcssDOM.length; ++i) {
+			bgcssDOM[i].media = "all";
+		}
+		
 	}
 </script>
-<style type="text/css" media="none" onload="this.media='all'">
+<style type="text/css" media="none">
 	.header {
 		background-image: url(<%= config.rootpath + "/static/images/header_background.png" %>);
 		background-repeat: repeat;
