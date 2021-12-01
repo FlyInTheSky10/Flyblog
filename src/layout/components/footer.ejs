@@ -52,6 +52,17 @@
 <!-- make text in <p> /r/n => <br> -->
 <script>
 
+	function addLoadEvent(loadEvent) {
+		let init = function() {
+			if (arguments.callee.done) return;
+			arguments.callee.done = true;
+			loadEvent.apply(document, arguments);
+		};
+		if (document.addEventListener) {
+			document.addEventListener("DOMContentLoaded", init, false);
+		}
+	}
+
 	function checkCode() {
 		let codeList = document.getElementsByTagName("code");
 		for (let i = 0; i < codeList.length; ++i) {
@@ -61,11 +72,11 @@
 			codeDOM.parentNode.style.setProperty("width", contentDOM.offsetWidth + "px");
 		}
 	}
-
-	window.onload = function() {
-
+	
+	addLoadEvent(() => {
+		
 		checkSidebar();
-
+		
 		let pList = document.getElementsByTagName("p");
 		for (let i = 0; i < pList.length; ++i) {
 			let pDOM = pList[i];
@@ -84,7 +95,8 @@
 			bgcssDOM[i].media = "all";
 		}
 		
-	}
+	});
+	
 </script>
 <style type="text/css" media="none">
 	.header {
