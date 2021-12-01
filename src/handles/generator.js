@@ -42,7 +42,11 @@ module.exports = (function() {
 			staticHelper.exportStaticAsset("js");
 			staticHelper.exportStaticAsset("images"); // export static files
 			postManager.initPostList();
+			
 			fs.writeFileSync(path.resolve(__dirname, "../../public/404.html"), "404 Not Found");
+			let faviconData = fs.readFileSync(path.resolve(__dirname, "../source/favicon.ico"));
+			fs.writeFileSync(path.resolve(__dirname, "../../public/favicon.ico"), faviconData);
+			
 			flag = true;
 			let that = this;
 			return that;
@@ -78,7 +82,7 @@ module.exports = (function() {
 					if (err) throw err;
 				});
 			}
-			console.log(`Generate PostPage done, generated ${postCount} pages.`);
+			console.log(`Generating post pages done, generated ${postCount} pages.`);
 		},
 		async generateIndexPage() {
 			checkInit();
@@ -109,7 +113,7 @@ module.exports = (function() {
 				});
 			}
 			
-			console.log(`Generate indexPage done, generated ${pageCount} pages.`);
+			console.log(`Generating index pages done, generated ${pageCount} pages.`);
 			
 			let that = this;
 			return that;
@@ -167,10 +171,35 @@ module.exports = (function() {
 				}
 			}
 			
-			console.log(`Generate TagPage done.`);
+			console.log(`Generating tag pages done.`);
 			
 		},
-		generateOtherPage(pageName) {
+		async generateOtherPage() {
+			checkInit();
+			
+			let config = infoHelper.getConfig();
+			
+			for (let i = 0; i < config.pages.length; ++i) {
+				
+				let {title, fileName} = config.pages[i];
+				let content = markedHelper.getHtmlFromMarked(fileName + ".md", "page");
+				
+				
+				let html;
+				await ejsHelper.renderOtherPage(config, title, content).then(data => html = data);
+				
+				let dir = `../../public/${fileName}/`;
+				fs.mkdirSync(path.resolve(__dirname, dir), { recursive: true });
+				
+				dir += "index.html";
+				console.log(`generating: ${path.resolve(__dirname, dir)}`);
+				fs.writeFile(path.resolve(__dirname, dir), html, err => {
+					if (err) throw err;
+				});
+				
+			}
+			
+			console.log(`Generating custom pages done.`);
 			
 		},
 		getPageCount() {

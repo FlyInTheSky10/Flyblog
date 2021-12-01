@@ -20,8 +20,8 @@ module.exports = (function() {
 			return ejs.renderFile(path.resolve(__dirname, "../layout/taglist.ejs"), 
 			{ config, post: { title: `标签: ${tagName}` }, postlist, pagecode, lastpage, tagName }, {async: false});
 		},
-		renderOtherPage(pageName) {
-			
+		renderOtherPage(config, title, content) {
+			return ejs.renderFile(path.resolve(__dirname, "../layout/other.ejs"), { config, post: { title }, content }, {async: false});
 		}
 	};
 })();

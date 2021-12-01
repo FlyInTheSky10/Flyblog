@@ -11,6 +11,7 @@ if (opr === "g" || opr === "generate") {
 	genPro.push(generator.generateIndexPage());
 	genPro.push(generator.generatePostPage());
 	genPro.push(generator.generateTagsPage());
+	genPro.push(generator.generateOtherPage());
 	
 	Promise.all(genPro).then(() => {
 		console.log(`Generating finished. Upload "/public" fold.`);

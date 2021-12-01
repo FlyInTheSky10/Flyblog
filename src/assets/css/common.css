@@ -54,7 +54,7 @@ body {
 .postlist-wrapper .post {
 	padding-bottom: 10px;
 }
-.postlist-wrapper .post .title, .postlist-wrapper .post-wrapper .title {
+.postlist-wrapper .post .title, .postlist-wrapper .post-wrapper .title, .tags-wrapper .title {
 	display: block;
 	padding: 20px 50px 10px 50px;
 	font-size: 30px;

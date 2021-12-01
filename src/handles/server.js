@@ -27,7 +27,8 @@ module.exports = (function() {
 			"Content-Type": type, 
 			"Access-Control-Allow-Origin": "*"
 		});
-		fs.readFile(path.resolve(__dirname, dir), type == "image/jpeg" ? undefined : type === "image/png" ? undefined : "utf8", (err, data) => {
+		fs.readFile(path.resolve(__dirname, dir), (type.search("image") != -1) ? undefined : "utf8", (err, data) => {
+			if (err) throw err;
 			res.write(data);
 			res.end();
 		});
@@ -75,6 +76,7 @@ module.exports = (function() {
 			genPro.push(generator.generateIndexPage());
 			genPro.push(generator.generatePostPage());
 			genPro.push(generator.generateTagsPage());
+			genPro.push(generator.generateOtherPage());
 			
 			server = http.createServer((req, res) => {
 				let data = "";
@@ -97,6 +99,8 @@ module.exports = (function() {
 					routeHandle(decodeURIComponent(pathname), filename, res, false);
 				});
 			});
+			
+			addRouteHandle("/", "image/x-icon", "ico");
 			
 			addRouteHandle("/static/css/", "text/css", "css");
 			addRouteHandle("/static/js/", "	application/x-javascript", "js");
@@ -130,6 +134,12 @@ module.exports = (function() {
 					for (let i = 2; i <= generator.getPageTagCount(tagName); ++i) {
 						addRouteHandle(`/tag/${tagName}/page/${i}/`, "text/html", "html");
 					}
+				}
+				
+				let { pages } = infoHelper.getConfig();
+				for (let i = 0; i < pages.length; ++i) {
+					let { fileName } = pages[i];
+					addRouteHandle(`/${fileName}/`, "text/html", "html");
 				}
 				
 				console.log("Server route done.");
