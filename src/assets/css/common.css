@@ -54,7 +54,7 @@ body {
 .postlist-wrapper .post {
 	padding-bottom: 10px;
 }
-.postlist-wrapper .post .title {
+.postlist-wrapper .post .title, .postlist-wrapper .post-wrapper .title {
 	display: block;
 	padding: 20px 50px 10px 50px;
 	font-size: 30px;
@@ -112,6 +112,37 @@ code {
 	font-size: 14px;
 	font-family: "Fira Mono", "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro", monospace;
 	width: 0px;
+}
+.tags-wrapper {
+	margin-top: 80px;
+	margin-bottom: 30px;
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 2px 2px 12px 4px rgba(0, 0, 0, 0.25);
+	flex: 4;
+}
+.tags-wrapper .tags {
+	margin: 0px auto 20px auto;
+	width: 80%;
+}
+.tags-wrapper .tags a {
+	display: inline-block;
+	margin: 10px 10px 10px 10px;
+	font-size: 20px;
+	color: #555;
+}
+.list-wrapper .list {
+	margin: auto 50px;
+	padding-bottom: 30px;
+}
+.list-wrapper .list li {
+	margin-top: 20px;
+	font-size: 16px;
+	padding-bottom: 5px;
+	border-bottom: 2px dashed rgba(7, 17, 27, 0.1);
+}
+.list-wrapper .list li a {
+	color: #444;
 }
 /*
 	文章样式

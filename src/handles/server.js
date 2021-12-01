@@ -74,6 +74,7 @@ module.exports = (function() {
 			let genPro = [], routePro;
 			genPro.push(generator.generateIndexPage());
 			genPro.push(generator.generatePostPage());
+			genPro.push(generator.generateTagsPage());
 			
 			server = http.createServer((req, res) => {
 				let data = "";
@@ -92,7 +93,8 @@ module.exports = (function() {
 							}
 						}
 					}
-					routeHandle(pathname, filename, res, false);
+					//console.log(`pathname: ${pathname}, filename: ${filename}`);
+					routeHandle(decodeURIComponent(pathname), filename, res, false);
 				});
 			});
 			
@@ -117,6 +119,17 @@ module.exports = (function() {
 						}
 					}
 					addRouteHandle(`/${postPath}/`, "text/html", "html");
+				}
+				
+				addRouteHandle(`/tag/`, "text/html", "html");
+				
+				let tagList = postManager.getTagList();
+				for (let k = 0; k < tagList.length; ++k) {
+					let tagName = tagList[k];
+					addRouteHandle(`/tag/${tagName}/`, "text/html", "html");
+					for (let i = 2; i <= generator.getPageTagCount(tagName); ++i) {
+						addRouteHandle(`/tag/${tagName}/page/${i}/`, "text/html", "html");
+					}
 				}
 				
 				console.log("Server route done.");

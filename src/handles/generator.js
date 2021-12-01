@@ -12,6 +12,7 @@ module.exports = (function() {
 	
 	let flag = false;
 	let pageCount = 0;
+	let pageTagCount = {};
 	
 	function checkInit() {
 		if (!flag) throw "Error: postManager doesn't init!";
@@ -36,7 +37,7 @@ module.exports = (function() {
 			fs.mkdirSync(path.resolve(__dirname, "../../public/static/js"), { recursive: true });
 			fs.mkdirSync(path.resolve(__dirname, "../../public/static/images"), { recursive: true });
 			fs.mkdirSync(path.resolve(__dirname, "../../public/page"), { recursive: true });
-			fs.mkdirSync(path.resolve(__dirname, "../../public/tags"), { recursive: true }); // make dir
+			fs.mkdirSync(path.resolve(__dirname, "../../public/tag"), { recursive: true }); // make dir
 			staticHelper.exportStaticAsset("css");
 			staticHelper.exportStaticAsset("js");
 			staticHelper.exportStaticAsset("images"); // export static files
@@ -113,7 +114,60 @@ module.exports = (function() {
 			let that = this;
 			return that;
 		},
-		generateTagsPage() {
+		async generateTagsPage() {
+			checkInit();
+			let config = infoHelper.getConfig();
+			let tagList = postManager.getTagList();
+			
+			let html;
+			await ejsHelper.renderTagsPage(config, tagList).then(data => html = data);
+			
+			let dir = "../../public/tag/index.html";
+			
+			console.log(`generating: ${path.resolve(__dirname, dir)}`);
+			
+			fs.writeFile(path.resolve(__dirname, dir), html, err => {
+				if (err) throw err;
+			});
+			
+			for (let i = 0; i < tagList.length; ++i) {
+				
+				let tagName = tagList[i];
+				let postCount = postManager.getPostCountByTagName(tagName);
+				let maxPostNumber = 10;
+				
+				pageTagCount[tagName] = 0;
+				
+				console.log(`generating: ${path.resolve(__dirname, `../../public/tag/${tagName}/`)}`);
+				
+				for (let l = 0; l < postCount; l += maxPostNumber) {
+					pageTagCount[tagName]++;
+					let r = l + maxPostNumber - 1;
+					if (r >= postCount) r = postCount - 1;
+					if (r < l) break ;
+					let postlist = postManager.getPostListByTagName(tagName, l, r);
+					
+					let html;
+					await ejsHelper.renderTagListPage(config, tagName, postlist, pageTagCount[tagName], r == postCount - 1).then(data => html = data);
+					
+					let dir = `../../public/tag/${tagName}/`;
+					fs.mkdirSync(path.resolve(__dirname, dir), { recursive: true });
+					
+					if (pageTagCount[tagName] == 1) {
+						dir += "index.html";
+					} else {
+						fs.mkdirSync(path.resolve(__dirname, dir + `page/${pageTagCount[tagName]}`), { recursive: true });
+						dir += `page/${pageTagCount[tagName]}/index.html`;
+					}
+					
+					fs.writeFile(path.resolve(__dirname, dir), html, err => {
+						if (err) throw err;
+					});
+					
+				}
+			}
+			
+			console.log(`Generate TagPage done.`);
 			
 		},
 		generateOtherPage(pageName) {
@@ -121,6 +175,9 @@ module.exports = (function() {
 		},
 		getPageCount() {
 			return pageCount;
-		}
+		},
+		getPageTagCount(tagName) {
+			return pageTagCount[tagName];
+		},
 	};
 })();

@@ -52,6 +52,9 @@ module.exports = (function() {
 					if (sepData.substring(i - 4, i) == "tags") {
 						info.tags = sepData.substring(i, sepData.length).replace(/[\r\n]/g,"").replace(/[\n]/g,"").split("- ");
 						info.tags.splice(0, 1);
+						for (let i = 0; i < info.tags.length; ++i) {
+							info.tags[i] = info.tags[i].replace(/[/*]/g,"").replace(/[<]/g,"").replace(/[>]/g,"").replace(/[|]/g,"").replace(/[?]/g,"");
+						}
 					}
 				}
 			} // return post head object

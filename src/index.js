@@ -1,20 +1,39 @@
 #!/usr/bin/env node
 "use strict";
 
-let server = require("./handles/server");
-
 let opr = process.argv[2];
 if (opr === "g" || opr === "generate") {
-	//let markedHelper = require("./utils/markedHelper");
-	//console.log(markedHelper.getHtmlFromMarked("szLISLCS.md", "post"));
-	//console.log(markedHelper.getIntroFromFileName("szLISLCS.md"));
-	//let infoHelper = require("./utils/infoHelper");
-	//console.log(infoHelper.getInfoFromMarked("szLISLCS.md", "post"));
-	//console.log(infoHelper.getConfig());
-	//let postManager = require("./handles/postManager");
-	//console.log(postManager.initPostList().getPostListByTagName("第三方说过话", 0, 0));
+	
+	let generator = require("./handles/generator");
+	generator.init();
+	
+	let genPro = [];
+	genPro.push(generator.generateIndexPage());
+	genPro.push(generator.generatePostPage());
+	genPro.push(generator.generateTagsPage());
+	
+	Promise.all(genPro).then(() => {
+		console.log(`Generating finished. Upload "/public" fold.`);
+	});
+	
 } else if (opr === "s" || opr === "server") {
+	
+	let server = require("./handles/server");
 	server.start();
+	
+} else if (opr === "c" || opr === "clean") {
+	
+	let path = require("path"), fs = require("fs"), osHelper = require("./utils/osHelper");
+	let dir = path.resolve(__dirname, "../public");
+	fs.exists(dir, exist => {
+		if (exist) {
+			osHelper.deleteAllFileByDir(dir);
+			console.log(`Cleaning "${dir}" fold finished.`);
+		} else {
+			console.log(`Can't find "${dir}" fold!`);
+		}
+	});
+
 } else {
 	console.log("Unknown command. Please check your input.");
 }

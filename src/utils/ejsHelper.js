@@ -13,8 +13,12 @@ module.exports = (function() {
 		renderIndexPage(config, postlist, pagecode, lastpage) {
 			return ejs.renderFile(path.resolve(__dirname, "../layout/index.ejs"), { config, post: undefined, postlist, pagecode, lastpage }, {async: false});
 		},
-		renderTagsPage() {
-			
+		renderTagsPage(config, tagList) {
+			return ejs.renderFile(path.resolve(__dirname, "../layout/tags.ejs"), { config, post: { title: "标签" }, tagList }, {async: false});
+		},
+		renderTagListPage(config, tagName, postlist, pagecode, lastpage) {
+			return ejs.renderFile(path.resolve(__dirname, "../layout/taglist.ejs"), 
+			{ config, post: { title: `标签: ${tagName}` }, postlist, pagecode, lastpage, tagName }, {async: false});
 		},
 		renderOtherPage(pageName) {
 			

@@ -1,0 +1,19 @@
+<%- include("components/head") -%>
+<body>
+	<div id="main">
+		<%- include("components/header") -%>
+		<div class="postlist-wrapper" style="opacity: 0; visibility: hidden;">
+			<%- include("components/sidebar") -%>
+			<div class="tags-wrapper">
+				<a class="title" align="center">标签</a>
+				<div class="tags">
+					<% for (let i = 0; i < tagList.length; ++i) { %>
+					<% tagHref = config.rootpath + "/tag/" + tagList[i] + "/" %>
+						<a href=<%- tagHref %>><%- tagList[i] %></a>
+					<% } %>
+				</div>
+			</div>
+		</div>
+		<%- include("components/footer") -%>
+	</div>
+</body>

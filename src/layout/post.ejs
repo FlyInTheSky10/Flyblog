@@ -22,7 +22,7 @@
 				</div>
 				<div class="tags" align="center">
 					<% for (let i = 0; i < post.tags.length; ++i) { %>
-						<% tagHref = config.rootpath + "/tags/" + post.tags[i] + "/" %>
+						<% tagHref = config.rootpath + "/tag/" + post.tags[i] + "/" %>
 						<a class="tag" href=<%=`${tagHref}`%>>
 							<i class="fa fa-tag" style="font-size: 15px"></i>
 							<%- post.tags[i] %>

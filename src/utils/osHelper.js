@@ -1,4 +1,5 @@
 let os = require("os");
+let fs = require("fs");
 
 module.exports = (function() {
 	return {
@@ -13,6 +14,19 @@ module.exports = (function() {
 					}
 				}
 			}
+		},
+		deleteAllFileByDir(root) {
+			let that = this;
+			let lst = fs.readdirSync(root);
+			for (let i = 0; i < lst.length; ++i) {
+				let nowPath = root + "/" + lst[i];
+				if (fs.statSync(nowPath).isFile()) {
+					fs.unlinkSync(nowPath);
+				} else {
+					that.deleteAllFileByDir(nowPath);
+				}
+			}
+			fs.rmdirSync(root);
 		}
 	}
 })();

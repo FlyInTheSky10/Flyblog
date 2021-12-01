@@ -28,7 +28,7 @@ module.exports = (function() {
 			for (let i = 0; i < postInfoList.length; ++i) {
 				for (let j = 0; j < postInfoList[i].tags.length; ++j) {
 					if (!tagsMap[postInfoList[i].tags[j]]) tagsMap[postInfoList[i].tags[j]] = [];
-					tagsMap[postInfoList[i].tags[j]].push(postInfoList[i].fileName);
+					tagsMap[postInfoList[i].tags[j]].push(postInfoList[i]);
 					tagList.add(postInfoList[i].tags[j]);
 				}
 			}
@@ -36,7 +36,7 @@ module.exports = (function() {
 			let that = this;
 			return that;
 		},
-		getPostListByTagName(tagName, l, r) { // return an array: [ filename ]
+		getPostListByTagName(tagName, l, r) { // return an array: [ postInfo ]
 			checkInit();
 			if (!tagList.has(tagName)) throw "Error: this tagName doesn't exist!";
 			if (l > r || r >= tagsMap[tagName].length) throw `Error: range[${l}, ${r}] is illegal!`;
@@ -46,7 +46,7 @@ module.exports = (function() {
 			checkInit();
 			return [...tagList];
 		},
-		getPostList(l, r) { // return an array: [ filename ]
+		getPostList(l, r) { // return an array: [ postInfo ]
 			checkInit();
 			if (l > r || r >= postInfoList.length) throw `Error: range[${l}, ${r}] is illegal!`;
 			return postInfoList.slice(l, r + 1);
@@ -54,6 +54,10 @@ module.exports = (function() {
 		getPostCount() { // return a Number
 			checkInit();
 			return postInfoList.length;
+		},
+		getPostCountByTagName(tagName) {
+			checkInit();
+			return tagsMap[tagName].length;
 		}
 	};
 })();
