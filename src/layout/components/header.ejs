@@ -1,10 +1,7 @@
-<!--<div class="nav">
-	<a class="nav-item" href=<%- config.rootpath + "/" %>>首页</a>
-	<a class="nav-item" href=<%- config.rootpath + "/tag/" %>>标签</a>
-	<a class="nav-item" href=<%- config.rootpath + "/about/" %>>关于</a>
-	<a class="nav-item" href=<%- config.rootpath + "/friends/" %>>友链</a>
-</div>-->
 <div class="header">
+	<a id="bar" style="display: none;">
+		<i class="fa fa-bars"></i>
+	</a>
 	<div class="author-wrapper">
 		<div class="author" align="center">
 			<a class="avatar" href=<%= config.rootpath %>></a>
@@ -16,4 +13,18 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		let barDOM = document.getElementById("bar");
+		let bodyScroll = function(event) {event.preventDefault();};
+		
+		barDOM.onclick = function() {
+			bpDOM = document.getElementById("bar-panel");
+			pwDOM = document.getElementsByClassName("panel-wrapper")[0];
+			bpDOM.style.setProperty("display", null);
+			setTimeout(() => pwDOM.style.setProperty(`transform`, `translateX(0px)`), 0);
+			document.body.addEventListener("touchmove", bodyScroll, { passive: false });
+			document.body.style.setProperty("position", "fixed");
+			document.body.style.setProperty("width", "100%");
+		};
+	</script>
 </div>

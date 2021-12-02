@@ -38,13 +38,16 @@
 	function checkSidebar() {
 		let clientWidth = document.body.clientWidth;
 		let sidebarDOM = document.getElementById("sidebar");
-		if (clientWidth < 1000) {
+		let barDOM = document.getElementById("bar");
+		if (clientWidth < 800) {
 			if (sidebarDOM) {
 				sidebarDOM.style.setProperty("display", "none");
+				barDOM.style.setProperty("display", null);
 			}
 		} else {
 			if (sidebarDOM) {
 				sidebarDOM.style.setProperty("display", null);
+				barDOM.style.setProperty("display", "none");
 			}
 		}
 	}

@@ -1,0 +1,25 @@
+<div id="bar-panel" style="display: none;">
+	<div class="backblack"></div>
+	<div class="panel-wrapper">
+		<div class="panel">
+			<%- include("common/nav") -%>
+			<a id="back" align="right" href="">
+				返回
+				<i class="fa fa-angle-right"></i>
+			</a>
+		</div>
+	</div>
+</div>
+<script>
+	bpDOM = document.getElementById("bar-panel");
+	backDOM = document.getElementById("back");
+	backDOM.onclick = function() {
+		pwDOM = document.getElementsByClassName("panel-wrapper")[0];
+		pwDOM.style.setProperty(`transform`, `translateX(${pwDOM.offsetWidth}px)`);
+		setTimeout(() => bpDOM.style.setProperty("display", "none"), 250);
+		document.body.removeEventListener("touchmove", bodyScroll, { passive: false });
+		document.body.style.setProperty("position", null);
+		document.body.style.setProperty("width", null);
+		return false;
+	};
+</script>

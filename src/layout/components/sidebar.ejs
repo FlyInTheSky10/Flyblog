@@ -1,2 +1,33 @@
 <div id="sidebar">
+	<div class="upper">
+		<div class="nav-wrapper">
+			<%- include("common/nav") -%>
+			<script>
+				hitokoto();
+				function hitokoto() {
+					ajax("https://v1.hitokoto.cn/?c=i&c=a");
+				}
+				function ajax(url) { // 方法，路径，传送数据
+					let xhr = new XMLHttpRequest();
+					xhr.onreadystatechange = () => {
+						if (xhr.readyState == 4) {
+							if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
+								let hi_contentDOM = document.getElementsByClassName("hitokoto-content");
+								let hi_fromDOM = document.getElementsByClassName("hitokoto-from");
+								let { hitokoto, from } = JSON.parse(xhr.responseText);
+								for (let i = 0; i < hi_contentDOM.length; ++i) {
+									hi_contentDOM[i].innerHTML = hitokoto;
+									hi_fromDOM[i].innerHTML = from;
+								}
+							} else {
+								console.log('Request was unsuccessful: ' + xhr.status);
+							}
+						}
+					};
+					xhr.open("GET", url, true);
+					xhr.send();
+				}
+			</script>
+		</div>
+	</div>
 </div>
