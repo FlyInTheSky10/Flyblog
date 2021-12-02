@@ -12,12 +12,16 @@
 </div>
 <script>
 	bpDOM = document.getElementById("bar-panel");
-	backDOM = document.getElementById("back");
-	backDOM.onclick = function() {
+	
+	let backF = function() {
 		pwDOM = document.getElementsByClassName("panel-wrapper")[0];
 		pwDOM.style.setProperty(`transform`, `translateX(${pwDOM.offsetWidth}px)`);
 		setTimeout(() => bpDOM.style.setProperty("display", "none"), 250);
 		document.body.removeEventListener("touchmove", bodyScroll, { passive: false });
 		return false;
 	};
+	
+	document.getElementById("back").onclick = backF;
+	document.getElementsByClassName("backblack")[0].onclick = backF;
+	
 </script>
