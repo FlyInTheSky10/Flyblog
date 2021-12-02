@@ -1,6 +1,6 @@
 <div class="footer" align="center">
 	<p>© 2016 — 2021 | FlyInTheSky</p>
-	<p>由 Flyblog 强力驱动</p>
+	<p>由 <a href="https://github.com/FlyInThesky10/Flyblog">Flyblog</a> 强力驱动</p>
 </div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
@@ -71,6 +71,7 @@
 		for (let i = 0; i < codeList.length; ++i) {
 			let codeDOM = codeList[i];
 			let contentDOM = codeDOM.parentNode.parentNode;
+			console.log(contentDOM.offsetWidth);
 			codeDOM.style.setProperty("width", contentDOM.offsetWidth + "px");
 			codeDOM.parentNode.style.setProperty("width", contentDOM.offsetWidth + "px");
 		}
@@ -86,7 +87,7 @@
 			pDOM.innerHTML = pDOM.innerHTML.replace(/[\r\n]/g, "<br>");
 		}
 		
-		checkCode();
+		setTimeout(() => {checkCode();});
 		
 		let pwDOM = document.getElementsByClassName("postlist-wrapper")[0];
 		pwDOM.style.setProperty("visibility", null);
