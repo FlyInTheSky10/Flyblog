@@ -18,8 +18,6 @@
 		pwDOM.style.setProperty(`transform`, `translateX(${pwDOM.offsetWidth}px)`);
 		setTimeout(() => bpDOM.style.setProperty("display", "none"), 250);
 		document.body.removeEventListener("touchmove", bodyScroll, { passive: false });
-		document.body.style.setProperty("position", null);
-		document.body.style.setProperty("width", null);
 		return false;
 	};
 </script>

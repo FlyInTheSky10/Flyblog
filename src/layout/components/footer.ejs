@@ -71,7 +71,6 @@
 		for (let i = 0; i < codeList.length; ++i) {
 			let codeDOM = codeList[i];
 			let contentDOM = codeDOM.parentNode.parentNode;
-			console.log(contentDOM.offsetWidth);
 			codeDOM.style.setProperty("width", contentDOM.offsetWidth + "px");
 			codeDOM.parentNode.style.setProperty("width", contentDOM.offsetWidth + "px");
 		}
