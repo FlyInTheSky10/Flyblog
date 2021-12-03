@@ -113,6 +113,10 @@ body {
 	padding: 20px 50px 10px 50px;
 	font-size: 30px;
 	color: black;
+	transition: 0.1s color;
+}
+.postlist-wrapper .post a.title:hover, .postlist-wrapper .post-wrapper a.title:hover {
+	color: #2196f3;
 }
 .postlist-wrapper .post .subtitle {
 	color: #686868;
@@ -124,8 +128,14 @@ body {
 	margin-left: 10%;
 	margin-right: 10%;
 	margin-bottom: 10px;
+	padding-top: 20px;
 	font-size: 17px;
 	color: #000;
+	border-top: 2px dashed rgba(7, 17, 27, 0.1);
+	transition: 0.1s color;
+}
+.postlist-wrapper .post a.readmore:hover {
+	color: #2196f3;
 }
 .footer {
 	bottom: 0px;
@@ -165,8 +175,12 @@ body {
 	font-size: 20px;
 	color: #444;
 	border-bottom: 2px dashed rgba(7, 17, 27, 0.1);
+	transition: 0.1s color;
 }
-#sidebar .upper .nav-wrapper .nav-item i, #bar-panel .panel .nav-item {
+#sidebar .upper .nav-wrapper a.nav-item:hover, #bar-panel .panel a.nav-item:hover {
+	color: #2196f3;
+}
+#sidebar .upper .nav-wrapper .nav-item i, #bar-panel .panel .nav-item i {
 	padding-right: 10px;
 }
 .hitokoto {
