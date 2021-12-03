@@ -15,7 +15,7 @@
 			<%- include("components/sidebar") -%>
 			<div class="postall-wrapper post">
 				<% posturl = config.rootpath + "/" + post.fileName.substring(0, post.fileName.length - 3) + "/" %>
-				<a class="title" href=<%= `${posturl}` %> align="center"><%- post.title -%><a>
+				<a class="title" href=<%- `"${posturl}"` %> align="center"><%- post.title -%></a>
 				<% ds = getStringFromDate(post.date) %>
 				<div class="subtitle" align="center">发表于 <%- ds %> | <%- config.author %></div>
 				<div class="content">
@@ -24,7 +24,7 @@
 				<div class="tags" align="center">
 					<% for (let i = 0; i < post.tags.length; ++i) { %>
 						<% tagHref = config.rootpath + "/tag/" + post.tags[i] + "/" %>
-						<a class="tag" href=<%=`${tagHref}`%>>
+						<a class="tag" href=<%-`"${tagHref}"`%>>
 							<i class="fa fa-tag" style="font-size: 15px"></i>
 							<%- post.tags[i] %>
 						</a>

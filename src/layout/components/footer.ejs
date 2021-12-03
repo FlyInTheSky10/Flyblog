@@ -71,8 +71,14 @@
 		for (let i = 0; i < codeList.length; ++i) {
 			let codeDOM = codeList[i];
 			let contentDOM = codeDOM.parentNode.parentNode;
-			codeDOM.style.setProperty("width", contentDOM.offsetWidth + "px");
-			codeDOM.parentNode.style.setProperty("width", contentDOM.offsetWidth + "px");
+			if (codeDOM.parentNode.tagName === "pre") {
+				codeDOM.style.setProperty("width", contentDOM.offsetWidth + "px");
+				codeDOM.parentNode.style.setProperty("width", contentDOM.offsetWidth + "px");
+			} else {
+				codeDOM.style.setProperty("width", codeDOM.parentNode.offsetWidth + "px");
+			}
+			let tmp = codeDOM.innerHTML;
+			codeDOM.innerHTML = tmp.replace(/\\\_/g, "\_");
 		}
 	}
 	
@@ -92,16 +98,10 @@
 		pwDOM.style.setProperty("visibility", null);
 		pwDOM.style.setProperty("opacity", 1);
 		
-		let bgcssDOM = document.getElementsByTagName("style");
-		
-		for (let i = 0; i < bgcssDOM.length; ++i) {
-			bgcssDOM[i].media = "all";
-		}
-		
 	});
 	
 </script>
-<style type="text/css" media="none">
+<style type="text/css">
 	.header {
 		background-image: url(<%= config.rootpath + "/static/images/header_background.png" %>);
 		background-repeat: repeat;

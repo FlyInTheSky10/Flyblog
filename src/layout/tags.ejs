@@ -6,11 +6,11 @@
 		<div class="postlist-wrapper" style="opacity: 0; visibility: hidden;">
 			<%- include("components/sidebar") -%>
 			<div class="tags-wrapper">
-				<a class="title" align="center">标签</a>
+				<a class="title bancolor" align="center">标签</a>
 				<div class="tags">
 					<% for (let i = 0; i < tagList.length; ++i) { %>
 					<% tagHref = config.rootpath + "/tag/" + tagList[i] + "/" %>
-						<a href=<%- tagHref %>><%- tagList[i] %></a>
+						<a href=<%- `"${tagHref}"` %>><%- tagList[i] %></a>
 					<% } %>
 				</div>
 			</div>

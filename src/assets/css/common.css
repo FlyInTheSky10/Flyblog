@@ -118,6 +118,9 @@ body {
 .postlist-wrapper .post a.title:hover, .postlist-wrapper .post-wrapper a.title:hover {
 	color: #2196f3;
 }
+.postlist-wrapper .post a.title.bancolor:hover, .postlist-wrapper .post-wrapper a.bancolor.title:hover {
+	color: #000;
+}
 .postlist-wrapper .post .subtitle {
 	color: #686868;
 	font-size: 14px;
@@ -149,6 +152,10 @@ body {
 	color: #686868;
 	font-size: 20px;
 	padding-right: 20px;
+	transition: 0.1s color;
+}
+a#previouspage:hover, a#nextpage:hover {
+	color: #2196f3;
 }
 .button-wrapper {
 	display: flex;
@@ -245,6 +252,10 @@ code {
 	margin: 10px 10px 10px 10px;
 	font-size: 20px;
 	color: #555;
+	transition: 0.1s color;
+}
+.tags-wrapper .tags a:hover {
+	color: #2196f3;
 }
 .list-wrapper .list {
 	margin: auto 50px;
@@ -258,6 +269,10 @@ code {
 }
 .list-wrapper .list li a {
 	color: #444;
+	transition: 0.1s color;
+}
+.list-wrapper .list li a:hover {
+	color: #2196f3;
 }
 /*
 	文章样式
