@@ -1,7 +1,7 @@
+<div id="bar" style="display: none;">
+	<i class="fa fa-bars"></i>
+</div>
 <div class="header">
-	<a id="bar" style="display: none;">
-		<i class="fa fa-bars"></i>
-	</a>
 	<div class="author-wrapper">
 		<div class="author" align="center">
 			<a class="avatar" href=<%- `"${config.rootpath}"` %>></a>
@@ -19,7 +19,7 @@
 		
 		let st = 0;
 		window.onscroll = function() {
-		    st = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+		    st = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset;
 		} // 移动端要用事件来实时更新
 		
 		barDOM.onclick = function() {
@@ -30,5 +30,6 @@
 			setTimeout(() => pwDOM.style.setProperty(`transform`, `translateX(0px)`), 0);
 			document.body.addEventListener("touchmove", bodyScroll, { passive: false });
 		};
+		
 	</script>
 </div>

@@ -42,11 +42,13 @@
 		if (clientWidth < 800) {
 			if (sidebarDOM) {
 				sidebarDOM.style.setProperty("display", "none");
+				sidebarDOM.parentNode.style.setProperty("display", "block");
 				barDOM.style.setProperty("display", null);
 			}
 		} else {
 			if (sidebarDOM) {
 				sidebarDOM.style.setProperty("display", null);
+				sidebarDOM.parentNode.style.setProperty("display", "flex");
 				barDOM.style.setProperty("display", "none");
 			}
 		}
@@ -97,6 +99,8 @@
 		let pwDOM = document.getElementsByClassName("postlist-wrapper")[0];
 		pwDOM.style.setProperty("visibility", null);
 		pwDOM.style.setProperty("opacity", 1);
+		
+		barDOM.style.setProperty(`left`, `${document.body.offsetWidth - 80}px`);
 		
 	});
 	

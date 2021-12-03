@@ -5,8 +5,7 @@ body {
 	position: relative;
 	height: 320px;
 }
-.header #bar {
-	display: block;
+#bar {
 	position: fixed;
 	width: 50px;
 	height: 50px;
@@ -14,11 +13,10 @@ body {
 	z-index: 10;
 	border-radius: 100%;
 	background-color: #CCCCCC;
-	right: 5%;
 	top: 20px;
 	opacity: 0.7;
 }
-.header #bar i {
+#bar i {
 	padding: 5px 7px 7px 8px;
 }
 .author-wrapper {
