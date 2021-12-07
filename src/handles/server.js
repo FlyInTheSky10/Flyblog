@@ -15,11 +15,11 @@ module.exports = (function() {
     let server;
     let routeHandle = function(pathname, filename, res, done) {
         if (pathname + filename == "/index.html") {
-            sendData(`${staticHelper.publicPath()}/index.html`, "text/html", res);
+            sendData(`${staticHelper.getPublicPath()}/index.html`, "text/html", res);
             done = true;
             return ;
         }
-        if (!done) sendData(`${staticHelper.publicPath()}/404.html`, "text/html", res);
+        if (!done) sendData(`${staticHelper.getPublicPath()}/404.html`, "text/html", res);
     };
 
     function sendData(dir, type, res) {
@@ -46,7 +46,7 @@ module.exports = (function() {
                 }
                 //console.log(ns);
                 if (ns === suffix) {
-                    sendData(`${staticHelper.publicPath()}${pathname + filename}`, type, res);
+                    sendData(`${staticHelper.getPublicPath()}${pathname + filename}`, type, res);
                     done = true;
                     return ;
                 }
@@ -61,15 +61,25 @@ module.exports = (function() {
     }
 
     return {
+        /**
+         * Set server port to new one.
+         */
         setPort(newport) {
             port = newport;
         },
+        /**
+         * Get server port.
+         * @returns {number}
+         */
         getPort() {
             return port;
         },
+        /**
+         * Start the server.
+         */
         start() {
 
-            infoHelper.serverMode();
+            infoHelper.setServerMode();
             generator.init();
 
             let genPro = [], routePro;
@@ -109,7 +119,7 @@ module.exports = (function() {
 
             routePro = Promise.all(genPro).then(() => {
 
-                for (let i = 2; i <= generator.getPageCount(); ++i) {
+                for (let i = 2; i <= generator.getIndexPageCount(); ++i) {
                     addRouteHandle(`/page/${i}/`, "text/html", "html");
                 }
 

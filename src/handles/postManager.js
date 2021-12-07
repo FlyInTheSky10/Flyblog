@@ -16,6 +16,9 @@ module.exports = (function() {
     };
 
     return {
+        /**
+         * Initiative the post manager.
+         */
         initPostList() { // init the post info
             let fileList = fs.readdirSync(path.resolve(__dirname, "../source/post"));
             for (let i = 0; i < fileList.length; ++i) {
@@ -36,25 +39,45 @@ module.exports = (function() {
             let that = this;
             return that;
         },
-        getPostListByTagName(tagName, l, r) { // return an array: [ postInfo ]
+        /**
+         * Get post list by tag name and range[l, r].
+         * @returns {Object[]} post list
+         */
+        getPostListByTagName(tagName, l, r) {
             checkInit();
             if (!tagList.has(tagName)) throw "Error: this tagName doesn't exist!";
             if (l > r || r >= tagsMap[tagName].length) throw `Error: range[${l}, ${r}] is illegal!`;
             return tagsMap[tagName].slice(l, r + 1);
         },
-        getTagList() { // return an array: [ tagName ]
+        /**
+         * Get tag list.
+         * @returns {String[]} tag list
+         */
+        getTagList() {
             checkInit();
             return [...tagList];
         },
-        getPostList(l, r) { // return an array: [ postInfo ]
+        /**
+         * Get post list by range[l, r].
+         * @returns {Object[]} post list
+         */
+        getPostList(l, r) {
             checkInit();
             if (l > r || r >= postInfoList.length) throw `Error: range[${l}, ${r}] is illegal!`;
             return postInfoList.slice(l, r + 1);
         },
-        getPostCount() { // return a Number
+        /**
+         * Get the number of posts.
+         * @returns {Number} the number of posts
+         */
+        getPostCount() {
             checkInit();
             return postInfoList.length;
         },
+        /**
+         * Get the number of posts in tag.
+         * @returns {Number} the number of posts in tag
+         */
         getPostCountByTagName(tagName) {
             checkInit();
             return tagsMap[tagName].length;

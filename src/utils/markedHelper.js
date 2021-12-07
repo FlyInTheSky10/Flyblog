@@ -7,7 +7,11 @@ const sourceDir = "../source";
 
 module.exports = (function() {
     return {
-        getHtmlFromMarked(fileName, type) { // return html source form markdown
+        /**
+         * Get HTML from markdown by file name and type.
+         * @returns {string} HTML
+         */
+        getHTMLFromMarked(fileName, type) {
             let typeDir = sourceDir + "/" + type;
             let fileDir = typeDir + "/" + fileName;
             //console.log(fileDir);
@@ -26,9 +30,13 @@ module.exports = (function() {
             } // delete head
             return dataHtml;
         },
-        getIntroFromFileName(fileName) { // return html introduction from fileName
+        /**
+         * Get HTML introduction from markdown by file name and type.
+         * @returns {string} HTML introduction
+         */
+        getIntroFromFileName(fileName) {
             let that = this;
-            let dataHtml = that.getHtmlFromMarked(fileName, "post");
+            let dataHtml = that.getHTMLFromMarked(fileName, "post");
             for (let i = 0; i < dataHtml.length; ++i) {
                 if (dataHtml.substring(i, i + 13) == "<!-- more -->") {
                     return dataHtml.substring(0, i);

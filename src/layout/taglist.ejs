@@ -10,23 +10,23 @@
                     <a class="title bancolor"><%- post.title %></a>
                     <div class="list-wrapper">
                         <ul class="list">
-                            <% for (let i = 0; i < postlist.length; ++i) { %>
+                            <% for (let i = 0; i < postList.length; ++i) { %>
                                 <li>
-                                    <% let hreflink = postlist[i].fileName.substring(0, postlist[i].fileName.length - 3); %>
-                                    <a href=<%- `"${config.rootpath}/${hreflink}/"` %>><%- postlist[i].title %></a>
+                                    <% let hreflink = postList[i].fileName.substring(0, postList[i].fileName.length - 3); %>
+                                    <a href=<%- `"${config.rootpath}/${hreflink}/"` %>><%- postList[i].title %></a>
                                 </li>
                             <% } %>
                         </ul>
                     </div>
                 </div>
                 <div class="button-wrapper">
-                    <% if (!lastpage) { %>
-                        <a id="nextpage" href=<%- `"${config.rootpath}/tag/${tagName}/page/${pagecode + 1}/"` %>>下一页</a>
+                    <% if (!lastPage) { %>
+                        <a id="nextpage" href=<%- `"${config.rootpath}/tag/${tagName}/page/${pageCode + 1}/"` %>>下一页</a>
                     <% } %>
-                    <% if (pagecode > 1) { %>
+                    <% if (pageCode > 1) { %>
                         <%
-                            let prehref = `"${config.rootpath}/tag/${tagName}/page/${pagecode - 1}/"`;
-                            if (pagecode == 2) {
+                            let prehref = `"${config.rootpath}/tag/${tagName}/page/${pageCode - 1}/"`;
+                            if (pageCode == 2) {
                                 prehref = `"${config.rootpath}/tag/${tagName}/"`;
                             }
                         %>

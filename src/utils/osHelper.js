@@ -3,7 +3,11 @@ let fs = require("fs");
 
 module.exports = (function() {
     return {
-        getIpAddress() {
+        /**
+         * Get local IP address.
+         * @returns {string} IP address
+         */
+        getIPAddress() {
             let ifaces = os.networkInterfaces();
             for (let e in ifaces) {
                 let iface = ifaces[e];
@@ -15,6 +19,9 @@ module.exports = (function() {
                 }
             }
         },
+        /**
+         * Delete directory.
+         */
         deleteAllFileByDir(root) {
             let that = this;
             let lst = fs.readdirSync(root);

@@ -11,15 +11,19 @@ module.exports = (function() {
     let hostname = "";
 
     return {
-        getInfoFromMarked(fileName, type) { // return post info: {title, date, fileName, tags};
+        /**
+         * Get information from the markdown file by file name.
+         * @returns {{date: Date, fileName: string, title: string, tags: String[]}} information
+         */
+        getInfoFromMarked(fileName, type) {
             let typeDir = sourceDir + "/" + type;
             let fileDir = typeDir + "/" + fileName;
             let dataMd = fs.readFileSync(path.resolve(__dirname, fileDir), "utf8");
             let count = 0, len = dataMd.length, endPos = 0;
             for (let i = 0; i < len - 2; ++i) {
-                if (dataMd[i] == dataMd[i + 1] && dataMd[i + 1] == dataMd[i + 2] && dataMd[i + 2] == '-') {
+                if (dataMd[i] === dataMd[i + 1] && dataMd[i + 1] === dataMd[i + 2] && dataMd[i + 2] === '-') {
                     ++count;
-                    if (count == 2) {
+                    if (count === 2) {
                         endPos = i;
                         break ;
                     }
@@ -60,7 +64,11 @@ module.exports = (function() {
             } // return post head object
             return info;
         },
-        getConfig() { // get blog config.json: {title, subtitle, author, description, rootpath, pages}
+        /**
+         * Get global config.
+         * @returns {Object} config
+         */
+        getConfig() {
             if (config != "") {
                 return config;
             } else {
@@ -69,12 +77,19 @@ module.exports = (function() {
                 return config;
             }
         },
-        serverMode() {
+        /**
+         * Set server mode, set the hostname to local IP address or local host.
+         */
+        setServerMode() {
             let that = this;
             that.getConfig();
-            hostname = osHelper.getIpAddress() || "localhost";
+            hostname = osHelper.getIPAddress() || "localhost";
             config.rootpath = `http://${hostname}:${config.port}`;
         },
+        /**
+         * Get host name.
+         * @returns {string} host name
+         */
         getHostName() {
             return hostname;
         }

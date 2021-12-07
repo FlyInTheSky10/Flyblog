@@ -11,13 +11,13 @@ let markedHelper = require("../utils/markedHelper");
 module.exports = (function() {
 
     let flag = false;
-    let pageCount = 0;
+    let pageIndexCount = 0;
     let pageTagCount = {};
 
     function checkInit() {
         if (!flag) throw "Error: postManager doesn't init!";
     };
-    function getPostlistByRange(l, r) { // return postlist [ post ]
+    function getPostlistByRange(l, r) {
         if (l > r) throw `Error: range[${l}, ${r}] is illegal!`;
         let raw = postManager.getPostList(l, r);
         let returnPostlist = [];
@@ -30,7 +30,10 @@ module.exports = (function() {
     };
 
     return {
-        init() { // init
+        /**
+         * Initiative the generator.
+         */
+        init() {
             fs.mkdirSync(path.resolve(__dirname, "../../public"), { recursive: true });
             fs.mkdirSync(path.resolve(__dirname, "../../public/static"), { recursive: true });
             fs.mkdirSync(path.resolve(__dirname, "../../public/static/css"), { recursive: true });
@@ -51,6 +54,10 @@ module.exports = (function() {
             let that = this;
             return that;
         },
+        /**
+         * Generate all post pages to public folder.
+         * @returns {Promise<void>}
+         */
         async generatePostPage() {
             checkInit();
             let config = infoHelper.getConfig();
@@ -60,7 +67,7 @@ module.exports = (function() {
 
                 let nowPostFileName = postList[i].fileName;
                 let nowPostObject = {
-                    content: markedHelper.getHtmlFromMarked(nowPostFileName, "post")
+                    content: markedHelper.getHTMLFromMarked(nowPostFileName, "post")
                 };
                 Object.assign(nowPostObject, postList[i]);
 
@@ -84,26 +91,30 @@ module.exports = (function() {
             }
             console.log(`Generating post pages done, generated ${postCount} pages.`);
         },
+        /**
+         * Generate all index pages to public folder.
+         * @returns {Promise<void>}
+         */
         async generateIndexPage() {
             checkInit();
             let config = infoHelper.getConfig();
             let postCount = postManager.getPostCount(), maxPostNumber = 10;
             for (let l = 0; l < postCount; l += maxPostNumber) {
-                pageCount++;
+                pageIndexCount++;
                 let r = l + maxPostNumber - 1;
                 if (r >= postCount) r = postCount - 1;
                 if (r < l) break ;
                 let postlist = getPostlistByRange(l, r);
 
                 let html;
-                await ejsHelper.renderIndexPage(config, postlist, pageCount, r == postCount - 1).then(data => html = data);
+                await ejsHelper.renderIndexPage(config, postlist, pageIndexCount, r == postCount - 1).then(data => html = data);
 
                 let dir = "../../public/";
-                if (pageCount == 1) {
+                if (pageIndexCount == 1) {
                     dir += "index.html";
                 } else {
-                    fs.mkdirSync(path.resolve(__dirname, dir + `page/${pageCount}`), { recursive: true });
-                    dir += `page/${pageCount}/index.html`;
+                    fs.mkdirSync(path.resolve(__dirname, dir + `page/${pageIndexCount}`), { recursive: true });
+                    dir += `page/${pageIndexCount}/index.html`;
                 }
 
                 console.log(`generating: ${path.resolve(__dirname, dir)}`);
@@ -113,11 +124,15 @@ module.exports = (function() {
                 });
             }
 
-            console.log(`Generating index pages done, generated ${pageCount} pages.`);
+            console.log(`Generating index pages done, generated ${pageIndexCount} pages.`);
 
             let that = this;
             return that;
         },
+        /**
+         * Generate all tags pages to public folder.
+         * @returns {Promise<void>}
+         */
         async generateTagsPage() {
             checkInit();
             let config = infoHelper.getConfig();
@@ -174,6 +189,10 @@ module.exports = (function() {
             console.log(`Generating tag pages done.`);
 
         },
+        /**
+         * Generate all other pages to public folder.
+         * @returns {Promise<void>}
+         */
         async generateOtherPage() {
             checkInit();
 
@@ -182,7 +201,7 @@ module.exports = (function() {
             for (let i = 0; i < config.pages.length; ++i) {
 
                 let {title, fileName} = config.pages[i];
-                let content = markedHelper.getHtmlFromMarked(fileName + ".md", "page");
+                let content = markedHelper.getHTMLFromMarked(fileName + ".md", "page");
 
 
                 let html;
@@ -202,9 +221,17 @@ module.exports = (function() {
             console.log(`Generating custom pages done.`);
 
         },
-        getPageCount() {
-            return pageCount;
+        /**
+         * Get the number of index pages
+         * @returns {number} the number of index pages
+         */
+        getIndexPageCount() {
+            return pageIndexCount;
         },
+        /**
+         * Get the number of tag pages
+         * @returns {number} the number of tag pages
+         */
         getPageTagCount(tagName) {
             return pageTagCount[tagName];
         },
