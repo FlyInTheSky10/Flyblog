@@ -11,6 +11,9 @@
   "license": "ISC",
   "description": "",
   "bin": {
-    "flyblog": "src/index.js"
+    "flyblog": "./src/index.js"
+  },
+  "scripts": {
+    "flyblog": "node ./src/index.js"
   }
 }

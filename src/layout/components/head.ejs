@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<%
-		let title;
-		if (post) {
-			title = `${post.title} | ${config.title}`;
-		} else {
-			title = config.title;
-		}
-		let cssCommon = config.rootpath + "/static/css/common.css";
-		let cssReset = config.rootpath + "/static/css/reset.css";
-		let cssTomorrow = config.rootpath + "/static/css/tomorrow.min.css";
-	%>
-	<title><%= title %></title>
-	<link href=<%- `"${cssCommon}"` %> rel="stylesheet">
-	<link href=<%- `"${cssReset}"` %> rel="stylesheet">
-	<link href=<%- `"${cssTomorrow}"` %> rel="stylesheet">
-	<link href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="utf-8">
+    <%
+        let title;
+        if (post) {
+            title = `${post.title} | ${config.title}`;
+        } else {
+            title = config.title;
+        }
+        let cssCommon = config.rootpath + "/static/css/common.css";
+        let cssReset = config.rootpath + "/static/css/reset.css";
+        let cssTomorrow = config.rootpath + "/static/css/tomorrow.min.css";
+    %>
+    <title><%= title %></title>
+    <link href=<%- `"${cssCommon}"` %> rel="stylesheet">
+    <link href=<%- `"${cssReset}"` %> rel="stylesheet">
+    <link href=<%- `"${cssTomorrow}"` %> rel="stylesheet">
+    <link href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>

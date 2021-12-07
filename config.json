@@ -1,18 +1,18 @@
 {
-	"title": "FlyInTheSky's Blog",
-	"subtitle": "a simple blog",
-	"author": "FlyInTheSky",
-	"description": "「不忘初心，方得始终」",
-	"rootpath": "https://flyblog.vercel.app",
-	"port": 3000,
-	"pages": [
-		{
-			"fileName": "about",
-			"title": "关于"
-		},
-		{
-			"fileName": "friends",
-			"title": "友链"
-		}
-	]
+    "title": "FlyInTheSky's Blog",
+    "subtitle": "a simple blog",
+    "author": "FlyInTheSky",
+    "description": "「不忘初心，方得始终」",
+    "rootpath": "https://flyblog.vercel.app",
+    "port": 3000,
+    "pages": [
+        {
+            "fileName": "about",
+            "title": "关于"
+        },
+        {
+            "fileName": "friends",
+            "title": "友链"
+        }
+    ]
 }
