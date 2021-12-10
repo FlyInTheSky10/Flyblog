@@ -13,23 +13,4 @@
             </div>
         </div>
     </div>
-    <script>
-        let barDOM = document.getElementById("bar");
-        let bodyScroll = function(event) {event.preventDefault();};
-
-        let st = 0;
-        window.onscroll = function() {
-            st = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset;
-        } // 移动端要用事件来实时更新
-
-        barDOM.onclick = function() {
-            bpDOM = document.getElementById("bar-panel");
-            pwDOM = document.getElementsByClassName("panel-wrapper")[0];
-            bpDOM.style.setProperty("display", null);
-            bpDOM.style.setProperty("transform", `translateY(${st}px)`);
-            setTimeout(() => pwDOM.style.setProperty(`transform`, `translateX(0px)`), 0);
-            document.body.addEventListener("touchmove", bodyScroll, { passive: false });
-        };
-
-    </script>
 </div>

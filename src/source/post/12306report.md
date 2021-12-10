@@ -2,7 +2,7 @@
 title: Vue3.0 仿 12306 前端项目分析
 date: 2021-11-09 11:25
 categories:
-- 占位
+- cat
 tags:
 - Vue
 - 前端
@@ -19,8 +19,6 @@ tags:
 - Vuex：实现全局的数据共享
 - Better-Scroll：实现更好的滚动框
 - mock.js：实现模拟后端数据发送
-
-<!-- more -->
 
 ## 支持功能
 

@@ -19,7 +19,7 @@ module.exports = (function() {
         /**
          * Initiative the post manager.
          */
-        initPostList() { // init the post info
+        initPostList() {
             let fileList = fs.readdirSync(path.resolve(__dirname, "../source/post"));
             for (let i = 0; i < fileList.length; ++i) {
                 postInfoList[i] = infoHelper.getInfoFromMarked(fileList[i], "post");
