@@ -112,6 +112,7 @@ body {
 	font-size: 30px;
 	color: black;
 	transition: 0.1s color;
+	text-align: center;
 }
 .postlist-wrapper .post a.title:hover, .postlist-wrapper .post-wrapper a.title:hover {
 	color: #2196f3;
