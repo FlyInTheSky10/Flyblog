@@ -9,5 +9,5 @@ tags:
 
 # Hello, Flyblog
 
-When you see this post, your flyblog was sucessfully running!
-
+When you see this post, your flyblog was successfully running!
+<!-- more -->

@@ -286,6 +286,14 @@ code {
     color: #444;
 }
 
+.postlist-wrapper .post .content strong {
+    font-weight: bold;
+}
+
+.postlist-wrapper .post .content li {
+    list-style-type: disc;
+}
+
 .postlist-wrapper .post .content p {
     line-height: 1.65em;
 }
