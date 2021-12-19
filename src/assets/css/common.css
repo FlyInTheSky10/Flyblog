@@ -96,6 +96,7 @@ body {
 	margin: 50px auto 40px auto;
 	height: 100%;
 	flex: 4;
+	width: 0;
 }
 .postlist-wrapper .post-wrapper {
 	margin: 30px 0px 30px 0px;
@@ -219,6 +220,7 @@ a#previouspage:hover, a#nextpage:hover {
 	border-radius: 10px;
 	box-shadow: 2px 2px 12px 4px rgba(0, 0, 0, 0.25);
 	flex: 4;
+	width: 0;
 }
 .postlist-wrapper .postall-wrapper .tags {
 	padding-bottom: 10px;
@@ -241,6 +243,7 @@ code {
 	border-radius: 10px;
 	box-shadow: 2px 2px 12px 4px rgba(0, 0, 0, 0.25);
 	flex: 4;
+	width:0;
 }
 .tags-wrapper .tags {
 	margin: 0px auto 20px auto;
