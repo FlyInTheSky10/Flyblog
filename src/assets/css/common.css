@@ -167,7 +167,7 @@ a#previouspage:hover, a#nextpage:hover {
 	flex: 1;
 }
 #sidebar .upper {
-	margin: 80px 30px 70px 0px;
+	margin: 80px 30px 0px 0px;
 	background-color: white;
 	border-radius: 10px;
 	box-shadow: 2px 2px 12px 4px rgba(0, 0, 0, 0.25);
@@ -189,6 +189,35 @@ a#previouspage:hover, a#nextpage:hover {
 }
 #sidebar .upper .nav-wrapper .nav-item i, #bar-panel .panel .nav-item i {
 	padding-right: 10px;
+}
+#sidebar #lower {
+	margin: 30px 30px 0px 0px;
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 2px 2px 12px 4px rgba(0, 0, 0, 0.25);
+	display: none;
+}
+#sidebar #lower .menu-wrapper {
+	padding: 20px 20px 20px 20px;
+}
+#sidebar #lower .menu-wrapper .title {
+	font-size: 18px;
+	font-weight: bold;
+	padding-bottom: 10px;
+}
+#sidebar #lower .menu-wrapper .item {
+	font-size: 14px;
+	padding-top: 5px;
+	display: block;
+	color: black;
+	line-height: 1.5;
+}
+#sidebar #lower .menu-wrapper .item.active {
+	color: #2196f3;
+	font-weight: bold;
+}
+#sidebar #lower .menu-wrapper a:hover {
+	color: #2196f3;
 }
 .hitokoto {
 	position: relative;
