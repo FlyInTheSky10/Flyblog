@@ -6,7 +6,7 @@ let menuDOM, lowerDOM, lowerDOMTop;
 let allhDOMs = [], lastDOM;
 window.onscroll = function() {
 	st = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset;
-	if (lowerDOM) { // 处理目录导航
+	if (lowerDOM && menuDOM) { // 处理目录导航
 		if (st >= lowerDOMTop) {
 			lowerDOM.style.setProperty("width", lowerDOM.offsetWidth + "px");
 			if (menuDOM.offsetHeight >= window.innerHeight - 70) {
@@ -28,7 +28,7 @@ window.onscroll = function() {
 		}
 		let flag = 0;
 		for (let i = 1; i < allhDOMs.length; ++i) {
-			if (allhDOMs[i - 1].position <= st && st <= allhDOMs[i].position) {
+			if (allhDOMs[i - 1].position - 15 <= st && st < allhDOMs[i].position - 15) {
 				if (lastDOM) lastDOM.className = "item";
 				allhDOMs[i - 1].itemDOM.className = "item active";
 				let offset = allhDOMs[i - 1].itemDOM.offsetTop - menuDOM.offsetTop + 15;
@@ -170,7 +170,6 @@ function checkCode() { // 格式化 <code> 块
 			codeDOM.parentNode.style.setProperty("width", contentDOM.offsetWidth + "px");
 		} else {
 			codeDOM.style.setProperty("width", codeDOM.parentNode.offsetWidth + "px");
-			codeDOM.style.setProperty("border", "solid #eaeaea");
 		}
 		let tmp = codeDOM.innerHTML;
 		codeDOM.innerHTML = tmp.replace(/\\\_/g, "\_");
