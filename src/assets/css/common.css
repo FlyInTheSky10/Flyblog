@@ -102,10 +102,12 @@ body {
 	margin: 30px 0px 30px 0px;
 	background-color: white;
 	border-radius: 10px;
-	box-shadow: 2px 2px 12px 4px rgba(0, 0, 0, 0.25);
+	/*box-shadow: 2px 2px 12px 4px rgba(0, 0, 0, 0.25);*/
 }
 .postlist-wrapper .post {
 	padding-bottom: 10px;
+	border: 1px solid rgba(7, 17, 27, 0.1);
+    border-radius: 10px;
 }
 .postlist-wrapper .post .title, .postlist-wrapper .post-wrapper .title, .tags-wrapper .title {
 	display: block;
@@ -170,9 +172,14 @@ a#previouspage:hover, a#nextpage:hover {
 	margin: 80px 30px 0px 0px;
 	background-color: white;
 	border-radius: 10px;
-	box-shadow: 2px 2px 12px 4px rgba(0, 0, 0, 0.25);
+	/*box-shadow: 2px 2px 12px 4px rgba(0, 0, 0, 0.25);*/
 }
-#sidebar .upper .nav-wrapper, #bar-panel .panel .nav-wrapper {
+#sidebar .upper .nav-wrapper {
+	padding: 20px 20px 10px 20px;
+	border: 1px solid rgba(7, 17, 27, 0.1);
+    border-radius: 10px;
+}
+#bar-panel .panel .nav-wrapper {
 	padding: 20px 20px 10px 20px;
 }
 #sidebar .upper .nav-wrapper .nav-item, #bar-panel .panel .nav-item {
@@ -194,7 +201,7 @@ a#previouspage:hover, a#nextpage:hover {
 	margin: 30px 30px 0px 0px;
 	background-color: white;
 	border-radius: 10px;
-	box-shadow: 2px 2px 12px 4px rgba(0, 0, 0, 0.25);
+	border: 1px solid rgba(7, 17, 27, 0.1);
 	display: none;
 }
 #sidebar #lower .menu-wrapper {
@@ -247,7 +254,7 @@ a#previouspage:hover, a#nextpage:hover {
 	margin-bottom: 30px;
 	background-color: white;
 	border-radius: 10px;
-	box-shadow: 2px 2px 12px 4px rgba(0, 0, 0, 0.25);
+	border: 1px solid rgba(7, 17, 27, 0.1);
 	flex: 4;
 	width: 0;
 }
@@ -270,7 +277,7 @@ code {
 	margin-bottom: 30px;
 	background-color: white;
 	border-radius: 10px;
-	box-shadow: 2px 2px 12px 4px rgba(0, 0, 0, 0.25);
+	border: 1px solid rgba(7, 17, 27, 0.1);
 	flex: 4;
 	width:0;
 }
