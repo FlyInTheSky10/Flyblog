@@ -2,13 +2,14 @@ let barDOM = document.getElementById("bar");
 let bodyScroll = function(event) {event.preventDefault();};
 
 let st = 0;
-let menuDOM, lowerDOM, lowerDOMTop;
+let menuDOM, lowerDOM, lowerDOMTop, lowerWidth = 0;
 let allhDOMs = [], lastDOM;
 window.onscroll = function() {
 	st = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset;
 	if (lowerDOM && menuDOM) { // 处理目录导航
 		if (st >= lowerDOMTop) {
-			lowerDOM.style.setProperty("width", lowerDOM.offsetWidth + "px");
+			if (lowerWidth == 0) lowerWidth = lowerDOM.offsetWidth;
+			lowerDOM.style.setProperty("width", lowerWidth - 2 + "px");
 			if (menuDOM.offsetHeight >= window.innerHeight - 70) {
 				lowerDOM.style.setProperty("height", (window.innerHeight - 10) + "px");
 				menuDOM.style.setProperty("height", (window.innerHeight - 70) + "px");
