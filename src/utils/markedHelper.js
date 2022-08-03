@@ -16,7 +16,7 @@ module.exports = (function() {
             let fileDir = typeDir + "/" + fileName;
             //console.log(fileDir);
             let dataMd = fs.readFileSync(path.resolve(__dirname, fileDir), "utf8");
-            dataMd = dataMd.replace(/[\_]/g, "\\_");
+            dataMd = dataMd.replace(/[\_]/g, "\_");
             let dataHtml = marked.parse(dataMd);
             let count = 0;
             for (let i = 0; i < dataHtml.length; ++i) {
